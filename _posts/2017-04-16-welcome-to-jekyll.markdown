@@ -1,24 +1,49 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "What does the C Compiler do with your binaries"
 date:   2017-04-16 03:54:40 -0400
-categories: jekyll update
+categories: C
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+The compiler divides the memory into various sections
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+{% highlight c %}
+int global1 = 100; //data
+static int staticGlobal1 = 200; //data
+const int globalconst = 300; //rodata
+static const int staticGlobalConst = 400; //rodata
 
-Jekyll also offers powerful support for code snippets:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+typedef struct {
+	long f1[2];
+} struct1_T;
+
+static struct1_T stGlobalZeroInit = { 0L, 0L}; //bss
+static const struct1_T stGlobalZeroInitConst = { 0L, 0L}; //rodata
+
+const char * fun(int i) {
+	const char *foo = "foofoo foo foo foo";
+	const char *bar = "barbar bar bar bar";
+	return i ? foo : bar;
+}
+
+int main() {
+	int i=1; //stack
+	const int j = 2; //stack
+	static int si = 3; //data
+	static const int sic = 4; //rodata
+	struct1_T r2 = { 0L, 0L}; //stack
+	static struct1_T stZeroInit = { 0L, 0L}; //bss
+	static const struct1_T stZeroInitConst = { 0L, 0L}; //rodata
+	static int zeroInitArr[10] = {0,0,0,0,0,0,0,0,0,0}; //bss
+	return 0;
+}
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+
+#### References
+---
+1. <https://en.wikipedia.org/wiki/.bss>
+2. [Expert C Programming, Peter Van Der Linden](https://www.amazon.com/Expert-Programming-Peter-van-Linden/dp/0131774298)
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
