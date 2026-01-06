@@ -4,6 +4,5 @@ title: About Me
 permalink: /about/
 ---
 
-Software Engineer in Test at The MathWorks, Master's degree in Computer Engineering from University of Texas at Dallas. Just started learning how to play a guitar. Struggling to achieve this year's goal to read 12 books.
-
+Senior Machine Learning Engineer specializing in large-scale training systems and distributed infrastructure, leveraging 10 years of software engineering experience across ML platforms, Alexa AI and compilers. Currently working at Amazon AGI, helping make Amazon Nova the most customizable model.
 
