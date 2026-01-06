@@ -9,7 +9,7 @@ ruby RUBY_VERSION
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "3.9.0"
+gem "jekyll", "3.10.0"
 
 gem "kramdown", ">= 2.3.1"
 
@@ -20,7 +20,7 @@ gem "minima", "~> 2.0"
 # gem "jekyll-theme-slate"
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
-gem "github-pages", "~> 221", group: :jekyll_plugins
+gem "github-pages", "~> 232", group: :jekyll_plugins
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
@@ -32,3 +32,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem "webrick", "~> 1.8"
+gem "nokogiri", ">= 1.18.9"
